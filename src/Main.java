@@ -4257,6 +4257,7 @@
 //
 //}
 
+import java.util.Scanner;
 
 class Animal {
     public Animal() {
@@ -4733,7 +4734,7 @@ class Pen extends WritingMaterials {
     }
 }
 
-class Ruler extends WritingMaterials {
+final class Ruler extends WritingMaterials {
     @Override
     public void display() {
         System.out.println(this.getClass().getSimpleName());
@@ -4824,3 +4825,111 @@ class Divider extends WritingMaterials {
 //    }
 //}
 
+class Building {
+    String name, adress, creator;
+    int year;
+    boolean sight;
+
+    {
+        name = "No Name";
+        adress = "No Adress";
+        creator = "No Creator";
+        year = 0;
+        sight = false;
+    }
+}
+
+class Library extends Building {
+    int bookCounter;
+    boolean corupted;
+    {
+        bookCounter = 0;
+        corupted = false;
+    }
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "bookCounter=" + bookCounter +
+                ", corupted=" + corupted +
+                ", name='" + name + '\'' +
+                ", adress='" + adress + '\'' +
+                ", creator='" + creator + '\'' +
+                ", year=" + year +
+                ", sight=" + sight +
+                '}';
+    }
+
+    public void beSilent() {
+        System.out.println("Прекратите шуметь!");
+    }
+}
+
+abstract class Human{
+    double height;
+    double weight;
+    int iq;
+
+    abstract void Fart();
+}
+
+class Kurator extends Human {
+    public void Fart() {
+        System.out.println("Пук!");
+    }
+
+    public void checkHomework(){
+        System.out.println("Проверяю домашку");
+    }
+    int salary;
+    {
+        height = 180;
+        weight = 75;
+        salary = 0;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+//        String[] exp = sc.nextLine().split(" ");
+//        calc(exp);
+        Library b = new Library();
+        b.beSilent();
+        System.out.println(b.toString());
+
+    }
+
+    public static void calc(String[] exp) {
+        double num1 = 0;
+        double num2 = 0;
+        try {
+            num1 = Double.parseDouble(exp[0]);
+            num2 = Double.parseDouble(exp[2]);
+        } catch (NumberFormatException e) {
+            System.out.println("Error! Not number");
+            return;
+        }
+        if (!((exp[1].equals("/")) | (exp[1].equals("+")) | (exp[1].equals("-")) | (exp[1].equals("*")))) {
+            System.out.println("Operation Error!");
+            return;
+        }
+        if (exp[1].equals("/") & exp[2].equals("0")) {
+            System.out.println("Error! Division by zero");
+            return;
+        }
+        if (exp[1].equals("+")) {
+            System.out.println(num1 + num2);
+            return;
+        } else if (exp[1].equals("-")) {
+            System.out.println(num1 - num2);
+            return;
+        } else if (exp[1].equals("*")) {
+            System.out.println(num1 * num2);
+            return;
+        } else {
+            System.out.println(num1 / num2);
+            return;
+        }
+    }
+}
